@@ -1,7 +1,5 @@
 extends Control
 
-
-
 func _on_play_pressed() -> void:
 	$Intro.visible = false
 	$Play.visible = true
@@ -18,7 +16,7 @@ func _on_start_pressed() -> void:
 	Global.level = 1
 	Global.coins = 0
 	Global.enemies_defeated = 0
-	get_tree().change_scene_to_file("res://Scenes/world.tscn")
+	StateManager.change_state(1)
 
 func _on_back_pressed() -> void:
 	$Intro.visible = true

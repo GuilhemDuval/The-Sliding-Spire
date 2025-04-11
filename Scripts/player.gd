@@ -62,4 +62,4 @@ func take_damage(damage_taken: int) -> void:
 	$SFX.play()
 	$AnimationPlayer.play("hit")
 	if Global.health <= 0:
-		get_tree().change_scene_to_file("res://Scenes/death_menu.tscn")
+		StateManager.change_state(3)

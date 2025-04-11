@@ -11,14 +11,15 @@ config_version=5
 [application]
 
 config/name="The Sliding Spire"
-run/main_scene="res://Scenes/world.tscn"
+run/main_scene="res://Scenes/scene_manager.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Global="*res://Scripts/Global.gd"
+Global="*res://Scripts/global.gd"
 Sfx="*res://Nodes/sfx.tscn"
+StateManager="*res://Scripts/state_manager.gd"
 
 [display]
 

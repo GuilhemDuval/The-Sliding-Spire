@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://bjj8pfmeqsxsu"]
+
+[ext_resource type="AudioStream" uid="uid://cu7ojncqu22se" path="res://Assets/SFX/Coin.wav" id="1_qrqfu"]
+[ext_resource type="AudioStream" uid="uid://bxrjfevjgy88q" path="res://Assets/SFX/Heart.wav" id="2_kqshw"]
+[ext_resource type="AudioStream" uid="uid://b0sd3daooh8j8" path="res://Assets/SFX/Key.wav" id="3_1k6yw"]
+[ext_resource type="AudioStream" uid="uid://c1bfoikvh5x74" path="res://Assets/SFX/Next.wav" id="4_0kj2t"]
+[ext_resource type="AudioStream" uid="uid://c1wl8h2or8mjv" path="res://Assets/SFX/Death.wav" id="5_mdtho"]
+
+[node name="SFX" type="Node"]
+
+[node name="Coin" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_qrqfu")
+volume_db = -20.0
+
+[node name="Heart" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_kqshw")
+volume_db = -20.0
+
+[node name="Key" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_1k6yw")
+volume_db = -20.0
+
+[node name="Door" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_0kj2t")
+volume_db = -20.0
+
+[node name="Death" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_mdtho")
+volume_db = -20.0

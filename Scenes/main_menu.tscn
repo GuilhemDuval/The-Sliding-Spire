@@ -1,0 +1,128 @@
+[gd_scene load_steps=3 format=3 uid="uid://big5tjdkguc7j"]
+
+[ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_vcvig"]
+[ext_resource type="FontFile" uid="uid://ctukvyktcvpyd" path="res://Assets/Kenney Pixel.ttf" id="2_3a8sx"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vcvig")
+
+[node name="Intro" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -284.0
+offset_top = -240.0
+offset_right = 284.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Intro"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -78.5
+offset_top = 75.0
+offset_right = 78.5
+offset_bottom = 104.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_3a8sx")
+theme_override_font_sizes/font_size = 60
+text = "Taquin Tower"
+
+[node name="Buttons" type="VBoxContainer" parent="Intro"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.0
+offset_top = 205.0
+offset_right = 100.0
+offset_bottom = 309.0
+grow_horizontal = 2
+
+[node name="Play" type="Button" parent="Intro/Buttons"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_3a8sx")
+theme_override_font_sizes/font_size = 32
+text = "Play"
+
+[node name="Quit" type="Button" parent="Intro/Buttons"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_3a8sx")
+theme_override_font_sizes/font_size = 32
+text = "Quit"
+
+[node name="Play" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -284.0
+offset_top = -240.0
+offset_right = 284.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Play"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -78.5
+offset_top = 75.0
+offset_right = 78.5
+offset_bottom = 104.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_3a8sx")
+theme_override_font_sizes/font_size = 60
+text = "Choose a seed"
+
+[node name="Buttons" type="VBoxContainer" parent="Play"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.0
+offset_top = 205.0
+offset_right = 100.0
+offset_bottom = 309.0
+grow_horizontal = 2
+
+[node name="SpinBox" type="SpinBox" parent="Play/Buttons"]
+layout_mode = 2
+
+[node name="Start" type="Button" parent="Play/Buttons"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_3a8sx")
+theme_override_font_sizes/font_size = 32
+text = "Start"
+
+[node name="Back" type="Button" parent="Play/Buttons"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_3a8sx")
+theme_override_font_sizes/font_size = 32
+text = "Back"
+
+[connection signal="pressed" from="Intro/Buttons/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Intro/Buttons/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Play/Buttons/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Play/Buttons/Back" to="." method="_on_back_pressed"]

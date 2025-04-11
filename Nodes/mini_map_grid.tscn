@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cu5eh3ej4f0vy"]
+
+[ext_resource type="Script" path="res://Scripts/mini_map_grid.gd" id="1_uk5sd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_60001"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="MiniMapGrid" type="Panel"]
+custom_minimum_size = Vector2(20, 20)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_60001")
+script = ExtResource("1_uk5sd")

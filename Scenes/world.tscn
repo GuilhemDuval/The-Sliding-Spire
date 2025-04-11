@@ -1,0 +1,216 @@
+[gd_scene load_steps=12 format=3 uid="uid://3qrknjolvfjt"]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_oon4y"]
+[ext_resource type="Texture2D" uid="uid://daik7qy76ka7g" path="res://Assets/Spritesheet.png" id="2_fe50h"]
+[ext_resource type="AudioStream" uid="uid://sxfwcm1c2wp3" path="res://Assets/SFX/walk.wav" id="3_3kyqp"]
+[ext_resource type="Script" path="res://Scripts/generation.gd" id="4_dwqly"]
+[ext_resource type="Script" path="res://Scripts/enemies.gd" id="5_mo7fy"]
+[ext_resource type="Script" path="res://Scripts/ui.gd" id="6_42om5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6do6j"]
+size = Vector2(42, 42)
+
+[sub_resource type="Animation" id="Animation_sq3sy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.60361, 1, 0.573066, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_o4a0o"]
+resource_name = "hit"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.60361, 1, 0.573066, 1), Color(1, 1, 1, 1), Color(0.60361, 1, 0.573066, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c57xv"]
+_data = {
+"RESET": SubResource("Animation_sq3sy"),
+"hit": SubResource("Animation_o4a0o")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mbs8e"]
+bg_color = Color(0, 0, 0, 0.239216)
+
+[node name="World" type="Node2D"]
+
+[node name="Player" type="CharacterBody2D" parent="." groups=["Player"]]
+position = Vector2(120, 120)
+script = ExtResource("1_oon4y")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+modulate = Color(0.60361, 1, 0.573066, 1)
+scale = Vector2(3, 3)
+texture = ExtResource("2_fe50h")
+region_enabled = true
+region_rect = Rect2(477, 1, 14, 14)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("RectangleShape2D_6do6j")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(0.5, 0.5)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
+libraries = {
+"": SubResource("AnimationLibrary_c57xv")
+}
+
+[node name="SFX" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource("3_3kyqp")
+volume_db = -20.0
+
+[node name="Generation" type="Node" parent="."]
+script = ExtResource("4_dwqly")
+enemy_spawn_chance = 0.7
+coin_spawn_chance = 0.8
+heart_spawn_chance = 0.3
+max_enemies_per_room = 10
+max_coins_per_room = 3
+max_hearts_per_room = 1
+
+[node name="Enemies" type="Node" parent="." groups=["EnemyManager"]]
+script = ExtResource("5_mo7fy")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("6_42om5")
+
+[node name="HealthBar" type="Panel" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 48.0
+offset_top = -96.0
+offset_right = 248.0
+offset_bottom = -48.0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="Heart1" type="Sprite2D" parent="CanvasLayer/HealthBar"]
+position = Vector2(24, 24)
+scale = Vector2(3, 3)
+texture = ExtResource("2_fe50h")
+hframes = 3
+frame = 2
+region_enabled = true
+region_rect = Rect2(680, 170, 50, 16)
+
+[node name="Heart2" type="Sprite2D" parent="CanvasLayer/HealthBar"]
+position = Vector2(75, 24)
+scale = Vector2(3, 3)
+texture = ExtResource("2_fe50h")
+hframes = 3
+frame = 2
+region_enabled = true
+region_rect = Rect2(680, 170, 50, 16)
+
+[node name="Heart3" type="Sprite2D" parent="CanvasLayer/HealthBar"]
+position = Vector2(126, 24)
+scale = Vector2(3, 3)
+texture = ExtResource("2_fe50h")
+hframes = 3
+frame = 2
+region_enabled = true
+region_rect = Rect2(680, 170, 50, 16)
+
+[node name="Heart4" type="Sprite2D" parent="CanvasLayer/HealthBar"]
+position = Vector2(177, 24)
+scale = Vector2(3, 3)
+texture = ExtResource("2_fe50h")
+hframes = 3
+frame = 2
+region_enabled = true
+region_rect = Rect2(680, 170, 50, 16)
+
+[node name="StatBar" type="Panel" parent="CanvasLayer"]
+custom_minimum_size = Vector2(150, 48)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 48.0
+offset_top = -142.0
+offset_right = 198.0
+offset_bottom = -102.0
+grow_vertical = 0
+
+[node name="CoinSprite" type="Sprite2D" parent="CanvasLayer/StatBar"]
+position = Vector2(22, 24)
+scale = Vector2(3, 3)
+texture = ExtResource("2_fe50h")
+region_enabled = true
+region_rect = Rect2(699, 53, 12, 12)
+
+[node name="Coins" type="Label" parent="CanvasLayer/StatBar"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 50.0
+offset_top = -11.0
+offset_right = 90.0
+offset_bottom = 12.0
+grow_vertical = 2
+text = "0"
+
+[node name="KeySprite" type="Sprite2D" parent="CanvasLayer/StatBar"]
+position = Vector2(126, 24)
+scale = Vector2(3, 3)
+texture = ExtResource("2_fe50h")
+region_enabled = true
+region_rect = Rect2(545, 192, 14, 7)
+
+[node name="MiniMap" type="Panel" parent="CanvasLayer"]
+custom_minimum_size = Vector2(200, 200)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -248.0
+offset_top = -248.0
+offset_right = -48.0
+offset_bottom = -48.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_mbs8e")
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/MiniMap"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 44.0
+offset_right = 188.0
+offset_bottom = 187.0
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 6
+
+[node name="Label" type="Label" parent="CanvasLayer/MiniMap"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -27.0
+offset_top = 14.0
+offset_right = 27.0
+offset_bottom = 37.0
+grow_horizontal = 2
+text = "Level 1"

@@ -9,9 +9,9 @@ func _on_quit_pressed() -> void:
 
 func _on_start_pressed() -> void:
 	if $Play/Buttons/SpinBox.value == 0:
-		Global.seed = randi_range(1, 100000)
+		Global.generation_seed = randi_range(1, 100000)
 	else:
-		Global.seed = $Play/Buttons/SpinBox.value
+		Global.generation_seed = $Play/Buttons/SpinBox.value
 	Global.health = Global.max_health
 	Global.level = 1
 	Global.coins = 0

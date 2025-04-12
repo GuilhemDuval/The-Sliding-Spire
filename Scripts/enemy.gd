@@ -7,6 +7,9 @@ var damage : int = 1
 
 var attack_chance : float = 0.5
 
+func _ready():
+	process_mode = Node.PROCESS_MODE_PAUSABLE
+
 func move() -> void:
 	if randf() < 0.5:
 		return

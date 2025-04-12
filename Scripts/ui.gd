@@ -8,7 +8,7 @@ extends CanvasLayer
 func _ready() -> void:
 	generateMiniMap()
 
-func _process(delta):
+func _process(_delta):
 	$StatBar/Coins.text = str(Global.coins)
 	
 	if player.has_key:

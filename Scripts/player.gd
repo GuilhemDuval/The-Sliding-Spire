@@ -4,6 +4,9 @@ signal player_moved
 
 var has_key : bool = false
 
+func _ready():
+	process_mode = Node.PROCESS_MODE_PAUSABLE
+
 func _physics_process(_delta: float) -> void:
 	player_input()
 

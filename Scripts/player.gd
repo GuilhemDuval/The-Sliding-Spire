@@ -16,16 +16,16 @@ func _physics_process(_delta: float) -> void:
 		player_input()
 
 func player_input() -> void:
-	if Input.is_action_just_pressed("move_right"):
+	if Input.is_action_pressed("move_right"):
 		velocity = Vector2.RIGHT
 		move(velocity)
-	elif Input.is_action_just_pressed("move_up"):
+	elif Input.is_action_pressed("move_up"):
 		velocity = Vector2.UP
 		move(velocity)
-	elif Input.is_action_just_pressed("move_left"):
+	elif Input.is_action_pressed("move_left"):
 		velocity = Vector2.LEFT
 		move(velocity)
-	elif Input.is_action_just_pressed("move_down"):
+	elif Input.is_action_pressed("move_down"):
 		velocity = Vector2.DOWN
 		move(velocity)
 
